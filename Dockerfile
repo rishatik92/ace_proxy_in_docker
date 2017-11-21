@@ -10,16 +10,15 @@ RUN wget http://repo.acestream.org/keys/acestream.public.key
 RUN apt-key add acestream.public.key
 RUN echo 'deb http://repo.acestream.org/ubuntu/ trusty main'  >> /etc/apt/sources.list
 RUN apt-get update -y
-RUN apt-get install -y acestream-engine vlc-nox python-gevent python-setuptools python-m2crypto python-apsw net-tools iputils-ping python-psutil
+RUN apt-get install -y acestream-engine vlc-nox python-gevent python-setuptools python-m2crypto python-apsw python-psutil
 RUN easy_install requests
-
 RUN mkdir -p /var/run/sshd
 RUN mkdir -p /var/log/supervisor
 RUN mkdir -p /tmp/acestream
 RUN wget "http://dl.acestream.org/linux/acestream_3.1.16_ubuntu_16.04_x86_64.tar.gz" 
 RUN tar zxvf acestream*.tar.gz -C /tmp/acestream
-RUN mkdir -p /home/tv/acestream
-RUN mv /tmp/acestream/acestream* /home/tv/acestream
+RUN mv /tmp/acestream/acestream* /tmp/acestream/acestream
+RUN mv /tmp/acestream/acestream /home/tv/
 RUN adduser --disabled-password --gecos "" tv
 
 RUN cd /tmp/ && wget "https://github.com/AndreyPavlenko/aceproxy/archive/2561431.zip" -O master.zip
